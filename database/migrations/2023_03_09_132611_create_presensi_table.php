@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('presensi', function (Blueprint $table) {
             $table->id();
-            $table->string('userid')->unique();
+            $table->integer('userid');
             $table->string('name');
             $table->string('position');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('whatsapp');
-            $table->string('photo')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->decimal('latitude', 12, 5);
+            $table->decimal('longitude', 12, 5);
+            $table->date('tanggal');
+            $table->time('masuk');
+            $table->time('pulang');
+            $table->string('buktipresensi')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('presensi');
     }
 };
